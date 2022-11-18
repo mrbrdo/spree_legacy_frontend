@@ -15,6 +15,7 @@
 
           <ul class="checkout-content-shipping-methods-list">
             <% ship_form.object.shipping_rates.each do |rate| %>
+              <% rate.cost = 0 if ship_form.object.order.has_free_shipping? %>
               <li class="shipping-method">
                 <label class="spree-radio-label">
                   <%= ship_form.radio_button :selected_shipping_rate_id,

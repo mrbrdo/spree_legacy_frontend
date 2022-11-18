@@ -13,7 +13,11 @@
 
     <% order.all_adjustments.nonzero.tax.eligible.group_by(&:label).each do |label, adjustments| %>
       <div class="d-table-cell"><%= label %></div>
-      <% tax_total = Spree::Money.new(adjustments.sum(&:amount), currency: order.currency) %>
+      <% if order.has_free_shipping? %>
+        <% tax_total = Spree::Money.new(adjustments.reject { |a| a.adjustable_type == 'Spree::Shipment' }.sum(&:amount), currency: order.currency) %>
+      <% else %>
+        <% tax_total = Spree::Money.new(adjustments.sum(&:amount), currency: order.currency) %>
+      <% end %>
       <div class="d-table-cell text-right"
            data-hook='tax-total'
            data-currency='<%= Money::Currency.find(order.currency).symbol %>'
