@@ -1,4 +1,9 @@
 Spree.ready(function ($) {
+  // on page change, hide the search bar
+  var searchDropdown = document.getElementById("search-dropdown");
+  if (searchDropdown)
+    searchDropdown.classList.remove('shown');
+
   document.getElementById('overlay').addEventListener('click', function () {
     var noProductElement = document.getElementById('no-product-available')
     document.getElementById("overlay").classList.remove('shown');
