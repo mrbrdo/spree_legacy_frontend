@@ -78,11 +78,10 @@ module Spree
 
       selected_properties = params.dig(:properties, property.filter_param)&.split(',') || []
       is_selected = selected_properties.include?(id)
-      property_values = (is_selected ? selected_properties - [id] : selected_properties + [id])
+      property_values = (is_selected ? selected_properties - [id] : selected_properties + [id]).join(',')
       url = permitted_params.merge(properties: { property.filter_param => property_values }, menu_open: 1)
       filter_name = "properties[#{property.filter_param}]"
       new_params = permitted_params.merge(filter_name => property_values, menu_open: 1)
-
       base_filter_link(url, name, opts.merge(params: new_params, is_selected: is_selected, filter_name: filter_name, id: id, multiselect: true))
     end
 
