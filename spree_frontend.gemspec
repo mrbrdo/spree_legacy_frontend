@@ -25,8 +25,8 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree_api', "~> 4.7"
-  s.add_dependency 'spree_core', "~> 4.7"
+  s.add_dependency 'spree_api', "~> 5.0"
+  s.add_dependency 'spree_core', "~> 5.0"
   s.add_dependency 'spree_api_v1', ">= 4.5.0"
 
   s.add_dependency 'babel-transpiler', '~> 0.7'
